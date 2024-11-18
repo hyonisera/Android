@@ -56,13 +56,6 @@ public class MainActivity extends AppCompatActivity {
         textViewRs.setText("결과 : " + rs);
     }
 
-    public void btnClearClicked(View view) {
-        editTextNum1.setText("");
-        editTextNum2.setText("");
-        toastMsg("결과 초기화");
-        textViewRs.setText("결과 : ");
-    }
-
     public void btnMinusClicked(View view) {
         if(checkNumberInputs() == false) {
             return;
@@ -73,6 +66,49 @@ public class MainActivity extends AppCompatActivity {
 
         int rs = num1 - num2;
         textViewRs.setText("결과 : " + rs);
+    }
+
+    public void btnMulClicked(View view) {
+        if(checkNumberInputs() == false) {
+            return;
+        }
+
+        int num1 = Integer.parseInt(editTextNum1.getText().toString());
+        int num2 = Integer.parseInt(editTextNum2.getText().toString());
+
+        int rs = num1 * num2;
+        textViewRs.setText("결과 : " + rs);
+    }
+
+    public void btnDivClicked(View view) {
+        if(checkNumberInputs() == false) {
+            return;
+        }
+
+        int num1 = Integer.parseInt(editTextNum1.getText().toString());
+        int num2 = Integer.parseInt(editTextNum2.getText().toString());
+
+        int rs = num1 / num2;
+        textViewRs.setText("결과 : " + rs);
+    }
+
+    public void btnRemClicked(View view) {
+        if(checkNumberInputs() == false) {
+            return;
+        }
+
+        int num1 = Integer.parseInt(editTextNum1.getText().toString());
+        int num2 = Integer.parseInt(editTextNum2.getText().toString());
+
+        int rs = num1 % num2;
+        textViewRs.setText("결과 : " + rs);
+    }
+
+    public void btnClearClicked(View view) {
+        editTextNum1.setText("");
+        editTextNum2.setText("");
+        toastMsg("결과 초기화");
+        textViewRs.setText("결과 : ");
     }
 
     void toastMsg(String msg) {
