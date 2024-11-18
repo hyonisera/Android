@@ -1,5 +1,6 @@
 package com.example.webbrowser;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editTextUrl;
@@ -55,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
             return false;
         });
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Toast.makeText(getApplicationContext(), "뒤로 가기 눌림", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        webViewMain.loadUrl("file:///android_asset/index.html");
     }
 
     private void goToUrl(String url) {
