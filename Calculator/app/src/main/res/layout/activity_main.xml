@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10sp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/activity_main__editTextNum1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="숫자를 입력해주세요."
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/activity_main__editTextNum2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="숫자를 입력해주세요."
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/activity_main__editViewRs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="결과 : "
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="btnAddClicked"
+            android:text="더하기" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:onClick="btnMinusClicked"
+            android:text="빼기" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:onClick="btnClearClicked"
+            android:text="지우기" />
+
+    </LinearLayout>
+
+</LinearLayout>
