@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20sp"
+    android:padding="10sp"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -13,18 +13,13 @@
         android:orientation="vertical">
 
         <Chronometer
-            android:id="@+id/chronometer1"
+            android:id="@+id/chronometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#CCCCCC"
             android:format="예약에 걸린 시간 %s"
             android:gravity="center"
             android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/btnStart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="예약 시작" />
 
     </LinearLayout>
 
@@ -53,22 +48,21 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:datePickerMode="spinner" />
 
             <TimePicker
-                android:id="@+id/timePicker1"
+                android:id="@+id/timePicker"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="match_parent"
                 android:timePickerMode="spinner" />
-
-            <CalendarView
-                android:id="@+id/calendarView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:showWeekNumber="false" />
 
         </FrameLayout>
 
@@ -77,19 +71,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#CCCCCC">
-
-        <Button
-            android:id="@+id/btnEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="예약완료" />
+        android:background="#CCCCCC"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/tvTear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:text="0000" />
 
         <TextView
