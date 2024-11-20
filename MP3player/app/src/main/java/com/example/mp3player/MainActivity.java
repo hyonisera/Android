@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> mp3List;
     String selectedMP3, fileName, extName;
 
-    String mp3Path = Environment.getExternalStorageDirectory().getPath() + "/";
+    String mp3Path = getExternalFilesDir(null).getPath() + "/";
     MediaPlayer mPlayer;
 
     int position = 0;
@@ -42,17 +42,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("간단 MP3 플레이어");
 
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
+//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
 
-        mp3List = new ArrayList<String>();
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
 
-        File[] listFiles = new File(mp3Path).listFiles();
+        mp3List = new ArrayList<>();
 
-        for (File file : listFiles) {
-            fileName = file.getName();
-            extName = fileName.substring(fileName.length() - 3);
-            if (extName.equals((String) "mp3"))
-                mp3List.add(fileName);
+//        File[] listFiles = new File(mp3Path).listFiles();
+//
+//        for (File file : listFiles) {
+//            fileName = file.getName();
+//            extName = fileName.substring(fileName.length() - 3);
+//            if (extName.equals((String) "mp3"))
+//                mp3List.add(fileName);
+//        }
+
+        File directory = new File(mp3Path);
+        if(!directory.exists() || !directory.isDirectory()) {
+            directory.mkdir();
+        }
+        File[] listFiles = directory.listFiles();
+        if(listFiles != null) {
+            for(File file : listFiles) {
+                fileName = file.getName();
+                extName = fileName.substring(fileName.length() - 3);
+                if(extName.equals("mp3")) {
+                    mp3List.add(fileName);
+                }
+            }
+        }
+        else {
+            mp3List.add("No MP3 files found");
         }
 
         init();
@@ -209,8 +231,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnStop.setOnClickListener(view -> {
-            mPlayer.stop();
-            mPlayer.reset();
+            if(mPlayer != null) {
+                mPlayer.stop();
+                mPlayer.release();
+                mPlayer = null;
+            }
             btnPlay.setClickable(true);
             btnPause.setClickable(false);
             btnStop.setClickable(false);
