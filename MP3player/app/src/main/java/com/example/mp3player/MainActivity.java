@@ -1,5 +1,7 @@
 package com.example.mp3player;
 
+import static android.os.Environment.DIRECTORY_MUSIC;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> mp3List;
     String selectedMP3, fileName, extName;
 
-    String mp3Path = getExternalFilesDir(null).getPath() + "/";
+    //String mp3Path = getExternalFilesDir(null).getPath() + "/";
+//    String mp3Path = getExternalFilesDir(null).getPath() + "/";
+    String mp3Path = "/sdcard/Android/data/com.example.mp3player/files/";
     MediaPlayer mPlayer;
 
     int position = 0;
@@ -59,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
 //                mp3List.add(fileName);
 //        }
 
+
+
+
+       // String mp3Path = getExternalFilesDir(null).getPath() + "/";
+//        mp3Path="data";
         File directory = new File(mp3Path);
         if(!directory.exists() || !directory.isDirectory()) {
             directory.mkdir();
